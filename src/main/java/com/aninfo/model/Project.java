@@ -4,27 +4,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 @Entity
 public class Project {
-
     @Id
-    private String projectCode;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    private ProjectStatus status;
-    private String clientId;
+    private String name;
+    private String description;
+    private Status status;
+    private LocalDate startDate;
+    private LocalDate estimatedFinishDate;
+    // project leader, when we know what it is
 
-    // private ArrayList<Ticket> tickets;
-    private ArrayList<Task> tasks;
+    public String getName(){ return name; }
+    public Long getId(){ return id; }
+    public String getDescription(){ return description; }
+    public Status getStatus(){ return status; }
+    public LocalDate getStartDate(){ return startDate; }
+    public LocalDate getEstimatedFinishDate(){ return estimatedFinishDate; }
 
-    Project(String product, String version, String clientId) {
-        this.projectCode = product + version;
-        this.status = ProjectStatus.NOTSTARTED;
-        this.clientId = clientId;
-
-        // this.tickets = new ArrayList<Ticket>();
-        this.tasks = new ArrayList<Task>();
+    public Project(String name, String description, LocalDate startDate, LocalDate estimatedFinishDate){
+        this.name = name;
+        this.status = Status.NOT_STARTED;
+        this.description = description;
+        this.startDate = startDate;
+        this.estimatedFinishDate = estimatedFinishDate;
     }
 
     public Project() {
