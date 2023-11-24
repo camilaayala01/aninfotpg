@@ -17,6 +17,7 @@ public class Project {
     private Status status;
     private LocalDate startDate;
     private LocalDate estimatedFinishDate;
+    private Long projectLeaderId;
     // project leader, when we know what it is
 
     public String getName(){ return name; }
@@ -26,12 +27,26 @@ public class Project {
     public LocalDate getStartDate(){ return startDate; }
     public LocalDate getEstimatedFinishDate(){ return estimatedFinishDate; }
 
-    public Project(String name, String description, LocalDate startDate, LocalDate estimatedFinishDate){
+    public void setName(String name){ this.name = name; }
+    public void setDescription(String description){ this.description = description; }
+    public void setStatus(Status status){ this.status = status; }
+    public void setEstimatedFinishDate(LocalDate estimatedFinishDate){ this.estimatedFinishDate = estimatedFinishDate; }
+
+    public Project(String name, String description, LocalDate startDate, LocalDate estimatedFinishDate, Long projectLeaderId){
         this.name = name;
         this.status = Status.NOT_STARTED;
         this.description = description;
         this.startDate = startDate;
         this.estimatedFinishDate = estimatedFinishDate;
+        this.projectLeaderId = projectLeaderId;
+    }
+
+    public void editProject(String name, String description, Status status, LocalDate estimatedFinishDate)
+    {
+        setName(name);
+        setDescription(description);
+        setStatus(status);
+        setEstimatedFinishDate(estimatedFinishDate);
     }
 
     public Project() {

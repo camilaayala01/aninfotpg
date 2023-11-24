@@ -4,6 +4,7 @@ import com.aninfo.exceptions.ProjectNameAlreadyTakenException;
 import com.aninfo.model.Priority;
 import com.aninfo.model.Project;
 import com.aninfo.exceptions.InvalidProjectException;
+import com.aninfo.model.Status;
 import com.aninfo.model.Task;
 import com.aninfo.repository.ProjectRepository;
 import net.bytebuddy.implementation.bytecode.Throw;
@@ -20,11 +21,10 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    public Project createProject(String name, String description, LocalDate startDate, LocalDate estimatedFinishDate) {
+    public Project createProject(String name, String description, LocalDate startDate, LocalDate estimatedFinishDate,Long projectLeaderId) {
         projectRepository.findProjectByName(name).ifPresent(x -> {throw new ProjectNameAlreadyTakenException("Name already taken");});
-        Project project = new Project(name, description, startDate, estimatedFinishDate);
+        Project project = new Project(name, description, startDate, estimatedFinishDate,projectLeaderId);
         return projectRepository.save(project);
-
     }
 
     public Collection<Project> getProjects() {
@@ -36,7 +36,7 @@ public class ProjectService {
     }
 
     public Project findById(Long id) {
-        return projectRepository.findById(id).orElseThrow(() -> new InvalidProjectException("No project found with that name"));
+        return projectRepository.findById(id).orElseThrow(() -> new InvalidProjectException("No project found"));
     }
 
     public void save(Project project) {
@@ -51,4 +51,10 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public Project editProject(Long id, String name, String description, Status status, LocalDate estimatedFinishDate) {
+        projectRepository.findProjectByName(name).ifPresent(x -> { if (!x.getId().equals(id)) {throw new ProjectNameAlreadyTakenException("Name already taken");}});
+        Project project = projectRepository.findById(id).orElseThrow(() -> new InvalidProjectException("Project not found"));
+        project.editProject(name, description, status, estimatedFinishDate);
+        return projectRepository.save(project);
+    }
 }
