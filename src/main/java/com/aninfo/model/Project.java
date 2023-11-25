@@ -15,38 +15,41 @@ public class Project {
     private String name;
     private String description;
     private Status status;
+    private LocalDate creationDate;
     private LocalDate startDate;
-    private LocalDate estimatedFinishDate;
+    private LocalDate finishDate;
     private Long projectLeaderId;
-    // project leader, when we know what it is
 
     public String getName(){ return name; }
     public Long getId(){ return id; }
     public String getDescription(){ return description; }
     public Status getStatus(){ return status; }
+    public LocalDate getCreationDate(){ return creationDate; }
     public LocalDate getStartDate(){ return startDate; }
-    public LocalDate getEstimatedFinishDate(){ return estimatedFinishDate; }
+    public LocalDate getEstimatedFinishDate(){ return finishDate; }
 
     public void setName(String name){ this.name = name; }
     public void setDescription(String description){ this.description = description; }
     public void setStatus(Status status){ this.status = status; }
-    public void setEstimatedFinishDate(LocalDate estimatedFinishDate){ this.estimatedFinishDate = estimatedFinishDate; }
+    public void setFinishDate(LocalDate finishDate){ this.finishDate = finishDate; }
 
-    public Project(String name, String description, LocalDate startDate, LocalDate estimatedFinishDate, Long projectLeaderId){
+    public Project(String name, String description, LocalDate startDate, LocalDate finishDate, Long projectLeaderId){
         this.name = name;
         this.status = Status.NOT_STARTED;
         this.description = description;
+        this.creationDate = LocalDate.now();
         this.startDate = startDate;
-        this.estimatedFinishDate = estimatedFinishDate;
+        this.finishDate = finishDate;
         this.projectLeaderId = projectLeaderId;
     }
 
-    public void editProject(String name, String description, Status status, LocalDate estimatedFinishDate)
+    public void editProject(String name, String description, Status status, LocalDate finishDate)
     {
+        //and employee?
         setName(name);
         setDescription(description);
         setStatus(status);
-        setEstimatedFinishDate(estimatedFinishDate);
+        setFinishDate(finishDate);
     }
 
     public Project() {

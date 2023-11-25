@@ -19,9 +19,10 @@ public class Task {
     private Status status;
     private Priority priority;
     private Long estimatedDuration;
+    private LocalDate creationDate;
     private LocalDate startDate;
     private LocalDate finishDate;
-    //  comentarios y responsable
+    //  comentarios(comments) y responsable (employee-in-charge)
 
     public Long getId(){ return id; }
     public String getName(){ return name; }
@@ -30,6 +31,7 @@ public class Task {
     public Status getStatus(){ return status; }
     public Priority getPriority(){ return priority; }
     public Long getEstimatedDuration(){ return estimatedDuration; }
+    public LocalDate getCreationDate(){ return creationDate; }
     public LocalDate getStartDate(){ return startDate; }
     public LocalDate getFinishDate(){ return finishDate; }
 
@@ -51,12 +53,13 @@ public class Task {
         this.status = Status.NOT_STARTED;
         this.priority = priority;
         this.estimatedDuration = estimatedDuration;
+        this.creationDate = LocalDate.now();
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
 
     public void editTask(String name, String description, Priority priority, Status status, Long estimatedDuration, LocalDate finishDate)
-    {
+    {  //and employee?
         setName(name);
         setDescription(description);
         setPriority(priority);
