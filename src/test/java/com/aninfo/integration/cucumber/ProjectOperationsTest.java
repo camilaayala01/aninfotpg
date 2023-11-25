@@ -1,10 +1,7 @@
 package com.aninfo.integration.cucumber;
 
-import com.aninfo.exceptions.DepositNegativeSumException;
-import com.aninfo.exceptions.InsufficientFundsException;
 import com.aninfo.exceptions.InvalidProjectException;
 import com.aninfo.exceptions.ProjectNameAlreadyTakenException;
-import com.aninfo.model.Account;
 import com.aninfo.model.Project;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -15,6 +12,7 @@ import cucumber.api.java.en.When;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ProjectOperationsTest extends ProjectIntegrationServiceTest {
 
@@ -28,11 +26,11 @@ public class ProjectOperationsTest extends ProjectIntegrationServiceTest {
         System.out.println("Before any test execution");
     }
 
-    // probando encontrarlo
+    // probando encontrarlo una vez creado
     @Given("^Project with name(\\s+)$")
     public void project_with_a_name(String name)  {
         this.name = name;
-        project = createProject(name);
+        createProject(name);
     }
 
     @When("^Trying to find project with name (\\s+)$")
@@ -44,27 +42,11 @@ public class ProjectOperationsTest extends ProjectIntegrationServiceTest {
             }
     }
 
-    @Then("^Account balance should be (\\d+)$")
-    public void account_balance_should_be(int balance) {
-        assertEquals(Double.valueOf(balance), account.getBalance());
+    @Then("^I get the project appropriately$")
+    public void obtains_project_appropriately() {
+        assertNotNull(this.project);
+        assertNull(this.ipe);
     }
-
-    @Then("^Operation should be denied due to insufficient funds$")
-    public void operation_should_be_denied_due_to_insufficient_funds() {
-        assertNotNull(ife);
-    }
-
-    @Then("^Operation should be denied due to negative sum$")
-    public void operation_should_be_denied_due_to_negative_sum() {
-        assertNotNull(dnse);
-    }
-
-    @And("^Account balance should remain (\\d+)$")
-    public void account_balance_should_remain(int balance) {
-        assertEquals(Double.valueOf(balance), account.getBalance());
-    }
-
-
 
     @After
     public void tearDown() {
