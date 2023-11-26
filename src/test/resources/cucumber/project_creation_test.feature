@@ -1,5 +1,5 @@
-Feature: Project operations
-  Checking bank account operations
+Feature: Project creation
+  Checking different project creation alternatives
 
   Scenario: Successfully withdraw money when balance is enough
     Given Account with a balance of 1000

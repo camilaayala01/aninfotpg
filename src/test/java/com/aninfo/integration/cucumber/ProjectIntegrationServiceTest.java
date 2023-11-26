@@ -1,6 +1,5 @@
 package com.aninfo.integration.cucumber;
 
-
 import com.aninfo.Memo1TPG;
 import com.aninfo.model.Project;
 import com.aninfo.service.ProjectService;
@@ -9,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 @ContextConfiguration(classes = Memo1TPG.class)
 @WebAppConfiguration
@@ -18,11 +18,16 @@ public class ProjectIntegrationServiceTest {
     ProjectService projectService;
 
     Project createProject(String name) {
-        return projectService.createProject(name,"", LocalDate.now(),LocalDate.now(), 1L);
+        return projectService.createProject(name, "", LocalDate.now(), LocalDate.now(), 1L);
     }
 
-    public Project findByName(String name)
-    {
+    public Project findByName(String name) {
         return projectService.findByName(name);
     }
+
+    public Collection<Project> findAllProjects(){return projectService.findAll();}
+
+    public void deleteAll(){ projectService.deleteAll();}
 }
+
+

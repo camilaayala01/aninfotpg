@@ -47,6 +47,8 @@ public class ProjectService {
         projectRepository.deleteById(id);
     }
 
+    public void deleteAll(){ projectRepository.deleteAll(); }
+
     public Collection<Project> findAll() {
         return projectRepository.findAll();
     }

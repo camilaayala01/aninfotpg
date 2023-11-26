@@ -26,7 +26,7 @@ public class Project {
     public Status getStatus(){ return status; }
     public LocalDate getCreationDate(){ return creationDate; }
     public LocalDate getStartDate(){ return startDate; }
-    public LocalDate getEstimatedFinishDate(){ return finishDate; }
+    public LocalDate getFinishDate(){ return finishDate; }
 
     public void setName(String name){ this.name = name; }
     public void setDescription(String description){ this.description = description; }
