@@ -55,12 +55,14 @@ public class ProjectAccessTest extends ProjectIntegrationServiceTest {
     // probando que hayan 2
     @Given("^Two projects$")
     public void two_projects() {
+        createProject("project1");
+        createProject("project2");
         this.allProjects = findAllProjects();
     }
 
     @Then("^I get two projects$")
     public void two_projects_gotten() {
-        assertEquals(this.allProjects.size(), 0);
+        assertEquals(this.allProjects.size(), 2);
     }
 
     // probando encontrarlo una vez creado

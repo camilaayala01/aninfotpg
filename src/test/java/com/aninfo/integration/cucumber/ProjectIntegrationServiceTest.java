@@ -20,7 +20,13 @@ public class ProjectIntegrationServiceTest {
     Project createProject(String name) {
         return projectService.createProject(name, "", LocalDate.now(), LocalDate.now(), 1L);
     }
+    Project createProject() {
+        return projectService.createProject("", "", LocalDate.now(), LocalDate.now(), 1L);
+    }
 
+    public Project findById(Long projectId) {
+        return projectService.findById(projectId);
+    }
     public Project findByName(String name) {
         return projectService.findByName(name);
     }
