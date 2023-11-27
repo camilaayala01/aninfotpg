@@ -2,6 +2,7 @@ package com.aninfo.integration.cucumber;
 
 import com.aninfo.exceptions.InvalidProjectException;
 import com.aninfo.model.Project;
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -75,5 +76,11 @@ public class ProjectEliminationTest extends ProjectIntegrationServiceTest{
         assertNotNull(found);
         assertNull(exception);
         assertEquals(name,found.getName());
+    }
+
+    @After
+    public void beforeEachTest() {
+        System.out.println("Resetting system");
+        deleteAll();
     }
 }

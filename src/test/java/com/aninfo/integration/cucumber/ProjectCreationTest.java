@@ -3,11 +3,11 @@ package com.aninfo.integration.cucumber;
 import com.aninfo.exceptions.InvalidProjectException;
 import com.aninfo.exceptions.ProjectNameAlreadyTakenException;
 import com.aninfo.model.Project;
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.jupiter.api.AfterEach;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
@@ -26,14 +26,6 @@ public class ProjectCreationTest extends ProjectIntegrationServiceTest {
     @Before
     public void setup() {
         System.out.println("Before any test execution");
-    }
-
-    @AfterEach
-    public void beforeEachTest() {
-        System.out.println("Resetting system");
-        pnat = null;
-        project = null;
-        deleteAll();
     }
 
     @When("^Trying to create a project with name (.*)$")
@@ -63,6 +55,12 @@ public class ProjectCreationTest extends ProjectIntegrationServiceTest {
         assertNotNull(this.pnat);
         assertNull(this.project);
 
+    }
+
+    @After
+    public void beforeEachTest() {
+        System.out.println("Resetting system");
+        deleteAll();
     }
 
 }

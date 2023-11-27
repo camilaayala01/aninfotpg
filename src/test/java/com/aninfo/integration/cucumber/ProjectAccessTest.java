@@ -94,6 +94,7 @@ public class ProjectAccessTest extends ProjectIntegrationServiceTest {
 
     @After
     public void tearDown() {
+        deleteAll();
         System.out.println("After all test execution");
     }
 }

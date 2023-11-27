@@ -25,25 +25,30 @@ public class ProjectIntegrationServiceTest {
     Project createProject(String name, String description, LocalDate estimatedFinishDate) {
         return projectService.createProject(name, description,LocalDate.now(),estimatedFinishDate, 1L);
     }
+    Project createProject(String name, String description)
+    {
+        return projectService.createProject(name, description, LocalDate.now(), LocalDate.now(), 1L);
+    }
+    Project createProject(String name, LocalDate estimatedFinishDate) {
+        return projectService.createProject(name, "",LocalDate.now(),estimatedFinishDate, 1L);
+    }
+
 
     Project createProject() {
         return projectService.createProject("", "", LocalDate.now(), LocalDate.now(), 1L);
     }
-    Project editProject(Long id, String name)
-    {
+    Project editProject(Long id, String name) {
         return projectService.editProject(id,name,"", Status.NOT_STARTED,LocalDate.now());
     }
-    Project editProject(Long id, String description, int change_description)
-    {
-        return projectService.editProject(id,"", description, Status.NOT_STARTED,LocalDate.now());
+    Project editProject(Long id, String description, String name) {
+        return projectService.editProject(id, name, description, Status.NOT_STARTED, LocalDate.now());
     }
-    Project editProject(Long id, Status status)
+    Project editProject(Long id, Status status, String name)
     {
         return projectService.editProject(id,"","", status,LocalDate.now());
     }
-    Project editProject(Long id, LocalDate estimatedFinishDate)
-    {
-        return projectService.editProject(id,"","", Status.NOT_STARTED,estimatedFinishDate);
+    Project editProject(Long id, LocalDate estimatedFinishDate, String name) {
+        return projectService.editProject(id,name,"", Status.NOT_STARTED,estimatedFinishDate);
     }
 
     public Project findById(Long projectId) {
