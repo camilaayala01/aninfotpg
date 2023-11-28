@@ -4,16 +4,22 @@ import com.aninfo.model.*;
 import com.aninfo.service.ProjectService;
 import com.aninfo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
 
+import org.springframework.web.client.RestTemplate;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -79,6 +85,11 @@ public class Memo1TPG {
 		return taskService.getTasksByProject(projectId);
 	}
 
+	@GetMapping("/projects/{projectId}/tasks/{taskId}")
+	public Optional<Task> getTask(@PathVariable Long projectId, @PathVariable Long taskId ) {
+		return taskService.getTask(taskId);
+	}
+
 	@PutMapping("/projects/{projectId}/tasks/{taskId}")
 	public Task editTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestParam String name, @RequestParam String description, @RequestParam Priority priority, @RequestParam Status status, @RequestParam Long estimatedDuration, @RequestParam LocalDate finishDate) {
 		return taskService.editTask(projectId,taskId, name, description, priority, status, estimatedDuration, finishDate);
@@ -88,7 +99,23 @@ public class Memo1TPG {
 	public void deleteTask(@PathVariable Long taskId) {
 		taskService.deleteById(taskId);
 	}
+	@GetMapping("/employees")
+	public Collection<Employee> getEmployeesForProject() {
+		RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
+		ResponseEntity<Employee[]> responseEntity = restTemplate.getForEntity(
+				"https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/recursos-psa/1.0.0/m/api/recursos",
+				Employee[].class);
 
+		if (responseEntity.getStatusCode() == HttpStatus.OK) {
+			Employee[] employees = responseEntity.getBody();
+
+			if (employees != null) {
+				return Arrays.asList(employees);
+			}
+		}
+
+		return Collections.emptyList();
+	}
 
 	@Bean
 	public Docket apiDocket() {
