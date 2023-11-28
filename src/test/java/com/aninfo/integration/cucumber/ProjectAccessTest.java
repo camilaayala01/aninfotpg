@@ -1,7 +1,6 @@
 package com.aninfo.integration.cucumber;
 
 import com.aninfo.exceptions.InvalidProjectException;
-import com.aninfo.exceptions.ProjectNameAlreadyTakenException;
 import com.aninfo.model.Project;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -23,7 +22,6 @@ public class ProjectAccessTest extends ProjectIntegrationServiceTest {
     private Project project;
     private Collection<Project> allProjects;
     private InvalidProjectException ipe;
-    private ProjectNameAlreadyTakenException pnat;
 
     @Before
     public void setup() {
@@ -94,6 +92,7 @@ public class ProjectAccessTest extends ProjectIntegrationServiceTest {
 
     @After
     public void tearDown() {
+        deleteAll();
         System.out.println("After all test execution");
     }
 }

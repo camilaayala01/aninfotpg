@@ -1,11 +1,8 @@
 package com.aninfo.service;
 
-import com.aninfo.exceptions.InvalidProjectException;
 import com.aninfo.exceptions.InvalidTaskException;
-import com.aninfo.exceptions.ProjectNameAlreadyTakenException;
 import com.aninfo.exceptions.TaskNameAlreadyTaken;
 import com.aninfo.model.Priority;
-import com.aninfo.model.Project;
 import com.aninfo.model.Status;
 import com.aninfo.model.Task;
 import com.aninfo.repository.TaskRepository;
@@ -13,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -60,6 +58,10 @@ public class TaskService {
         return false;
     }
 
+    public Task findByName(String name) {
+        return taskRepository.findTaskByName(name).orElseThrow(() -> new InvalidTaskException("No task found with that name"));
+    }
+
     public Task editTask(Long projectId, Long taskId, String name, String description, Priority priority, Status status, Long estimatedDuration, LocalDate finishDate) {
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new InvalidTaskException("Task not found"));
         if (nameTakenByOtherTask(name, projectId, taskId)){
@@ -68,4 +70,6 @@ public class TaskService {
         task.editTask(name,description,priority,status,estimatedDuration,finishDate);
         return taskRepository.save(task);
     }
+
+    public void deleteAll(){ taskRepository.deleteAll(); }
 }
