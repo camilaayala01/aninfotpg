@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM eclipse-temurin:17-jdk-jammy
 LABEL authors="camil"
 
 COPY build/libs/demo-0.0.1-SNAPSHOT.jar app.jar
