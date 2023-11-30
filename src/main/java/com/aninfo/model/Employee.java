@@ -20,6 +20,10 @@ public class Employee {
                 '}';
 
     }
+
+    public Long getIdNumber() {
+        return this.idNumber;
+    }
 }
 
 

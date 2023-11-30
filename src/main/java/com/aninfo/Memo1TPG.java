@@ -99,8 +99,9 @@ public class Memo1TPG {
 	public void deleteTask(@PathVariable Long taskId) {
 		taskService.deleteById(taskId);
 	}
+
 	@GetMapping("/employees")
-	public Collection<Employee> getEmployeesForProject() {
+	public Collection<Employee> getEmployees() {
 		RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
 		ResponseEntity<Employee[]> responseEntity = restTemplate.getForEntity(
 				"https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/recursos-psa/1.0.0/m/api/recursos",
@@ -115,6 +116,13 @@ public class Memo1TPG {
 		}
 
 		return Collections.emptyList();
+	}
+	@GetMapping("/employees/{employeeId}")
+	public  ResponseEntity<Employee> getEmployee(@PathVariable Long employeeId)
+	{
+		Optional<Employee> employeeOptional = getEmployees().stream().filter(employee -> employee.getIdNumber().equals(employeeId)).findFirst();
+		return ResponseEntity.of(employeeOptional);
+
 	}
 
 	@Bean
