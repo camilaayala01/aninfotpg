@@ -14,6 +14,7 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -46,9 +47,11 @@ public class Memo1TPG {
 	}
 
 	@PostMapping("/projects")
-	public Project createProject(@RequestParam String name, @RequestParam String description, @RequestParam LocalDate startDate, @RequestParam LocalDate estimatedFinishDate, @RequestParam String leaderId)
+	public Project createProject(@RequestParam String name, @RequestParam String description, @RequestParam String startDate, @RequestParam String estimatedFinishDate, @RequestParam String leaderId)
 	{
-		return projectService.createProject(name, description, startDate, estimatedFinishDate,Long.parseLong(leaderId));
+		return projectService.createProject(name, description,LocalDate.parse(
+				startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse(
+				estimatedFinishDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")),Long.parseLong(leaderId));
 	}
 
 	@PostMapping("/projects/{projectId}/tasks")
