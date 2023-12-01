@@ -46,9 +46,9 @@ public class Memo1TPG {
 	}
 
 	@PostMapping("/projects")
-	public Project createProject(@RequestParam String name, @RequestParam String description, @RequestParam LocalDate startDate, @RequestParam LocalDate estimatedFinishDate, @RequestParam Long leaderId)
+	public Project createProject(@RequestParam String name, @RequestParam String description, @RequestParam LocalDate startDate, @RequestParam LocalDate estimatedFinishDate, @RequestParam String leaderId)
 	{
-		return projectService.createProject(name, description, startDate, estimatedFinishDate,leaderId);
+		return projectService.createProject(name, description, startDate, estimatedFinishDate,leaderId.parseInt();
 	}
 
 	@PostMapping("/projects/{projectId}/tasks")
