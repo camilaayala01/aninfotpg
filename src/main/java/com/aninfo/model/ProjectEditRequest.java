@@ -4,10 +4,9 @@ public class ProjectEditRequest {
 
     String name;
     String description;
-    String priority;
     String status;
-    String estimatedDuration;
-    String finishDate;
+    String estimatedFinishDate;
+    String leaderId;
 
     public String getName() {
         return name;
@@ -17,20 +16,14 @@ public class ProjectEditRequest {
         return description;
     }
 
-    public String getEstimatedDuration() {
-        return estimatedDuration;
-    }
+
 
     public String getEstimatedFinishDate() {
-        return finishDate;
+        return estimatedFinishDate;
     }
 
-    public String getPriority()
-    {
-        return priority;
-    }
+
     public String getStatus(){return status;}
-    public String getFinishDate(){return  finishDate;}
 
-    //public String getLeaderId() {return leaderId;}
+    public String getLeaderId() {return leaderId;}
 }

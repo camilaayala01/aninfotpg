@@ -74,9 +74,9 @@ public class Memo1TPG {
 	}
 
 	@PutMapping("/projects/{projectId}")
-	public Project editProject(@PathVariable Long projectId, @RequestBody String name, @RequestBody String description, @RequestBody Status status, @RequestBody LocalDate estimatedFinishDate, @RequestBody Long leaderId)
+	public Project editProject(@PathVariable Long projectId, @RequestBody ProjectEditRequest project)
 	{
-		return projectService.editProject(projectId, name, description, status, estimatedFinishDate, leaderId);
+		return projectService.editProject(projectId, project.getName(),project.getDescription(),Status.valueOf(project.getStatus()),LocalDate.parse(project.getEstimatedFinishDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),Long.parseLong(project.getLeaderId()));
 	}
 
 
@@ -97,10 +97,8 @@ public class Memo1TPG {
 	}
 
 	@PutMapping("/projects/{projectId}/tasks/{taskId}")
-	public Task editTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody ProjectEditRequest project) {
-		return taskService.editTask(projectId,taskId, project.getName(),project.getDescription(),Priority.valueOf(project.getPriority()),
-				Status.valueOf(project.getStatus()),Long.parseLong(project.getEstimatedDuration()),
-						LocalDate.parse(project.getFinishDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+	public Task editTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody TaskEditRequest task) {
+		return taskService.editTask(projectId,taskId,task.getName(),task.getDescription(),Priority.valueOf(task.getPriority()),Status.valueOf(task.getStatus()),Long.parseLong(task.getEstimatedDuration()),LocalDate.parse(task.getEstimatedFinishDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 	}
 
 	@DeleteMapping("/projects/{projectId}/tasks/{taskId}")
