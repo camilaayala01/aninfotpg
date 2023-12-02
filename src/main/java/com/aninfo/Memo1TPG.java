@@ -49,6 +49,7 @@ public class Memo1TPG {
 	@PostMapping("/projects")
 	public Project createProject(@RequestBody ProjectCreationRequest project)
 	{
+		System.out.println(project);
 		return projectService.createProject(project.getName(),
 				project.getDescription(),
 				LocalDate.parse(project.getStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
