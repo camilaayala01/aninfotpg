@@ -9,10 +9,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface ProjectRepository extends CrudRepository<Project, Long> {
-
     Optional<Project> findProjectByName(String name);
 
     @Override
     List<Project> findAll();
-
 }

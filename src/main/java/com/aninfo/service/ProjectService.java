@@ -53,10 +53,10 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
-    public Project editProject(Long id, String name, String description, Status status, LocalDate estimatedFinishDate) {
+    public Project editProject(Long id, String name, String description, Status status, LocalDate estimatedFinishDate, Long leaderId) {
         projectRepository.findProjectByName(name).ifPresent(x -> { if (!x.getId().equals(id)) {throw new ProjectNameAlreadyTakenException("Name already taken");}});
         Project project = projectRepository.findById(id).orElseThrow(() -> new InvalidProjectException("Project not found"));
-        project.editProject(name, description, status, estimatedFinishDate);
+        project.editProject(name, description, status, estimatedFinishDate, leaderId);
         return projectRepository.save(project);
     }
 }

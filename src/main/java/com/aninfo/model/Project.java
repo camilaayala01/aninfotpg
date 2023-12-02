@@ -21,14 +21,17 @@ public class Project {
     private Long projectLeaderId;
 
     public String getName(){ return name; }
+    public Long getProjectLeaderId(){
+        return projectLeaderId;
+    }
     public Long getId(){ return id; }
     public String getDescription(){ return description; }
     public Status getStatus(){ return status; }
     public LocalDate getCreationDate(){ return creationDate; }
     public LocalDate getStartDate(){ return startDate; }
     public LocalDate getFinishDate(){ return finishDate; }
-
     public void setName(String name){ this.name = name; }
+    public void setEmployee(Long leaderId){ this.projectLeaderId = leaderId; }
     public void setDescription(String description){ this.description = description; }
     public void setStatus(Status status){ this.status = status; }
     public void setFinishDate(LocalDate finishDate){ this.finishDate = finishDate; }
@@ -43,9 +46,9 @@ public class Project {
         this.projectLeaderId = projectLeaderId;
     }
 
-    public void editProject(String name, String description, Status status, LocalDate finishDate)
+    public void editProject(String name, String description, Status status, LocalDate finishDate, Long leaderId)
     {
-        //and employee?
+        setEmployee(leaderId);
         setName(name);
         setDescription(description);
         setStatus(status);

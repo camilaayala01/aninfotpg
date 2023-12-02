@@ -38,17 +38,17 @@ public class ProjectIntegrationServiceTest {
         return projectService.createProject("", "", LocalDate.now(), LocalDate.now(), 1L);
     }
     Project editProject(Long id, String name) {
-        return projectService.editProject(id,name,"", Status.NOT_STARTED,LocalDate.now());
+        return projectService.editProject(id,name,"", Status.NOT_STARTED,LocalDate.now(),1L);
     }
     Project editProject(Long id, String description, String name) {
-        return projectService.editProject(id, name, description, Status.NOT_STARTED, LocalDate.now());
+        return projectService.editProject(id, name, description, Status.NOT_STARTED, LocalDate.now(),1L);
     }
     Project editProject(Long id, Status status, String name)
     {
-        return projectService.editProject(id,"","", status,LocalDate.now());
+        return projectService.editProject(id,"","", status,LocalDate.now(),1L);
     }
     Project editProject(Long id, LocalDate estimatedFinishDate, String name) {
-        return projectService.editProject(id,name,"", Status.NOT_STARTED,estimatedFinishDate);
+        return projectService.editProject(id,name,"", Status.NOT_STARTED,estimatedFinishDate,1L);
     }
 
     public Project findById(Long projectId) {

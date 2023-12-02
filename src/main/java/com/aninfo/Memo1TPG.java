@@ -74,9 +74,9 @@ public class Memo1TPG {
 	}
 
 	@PutMapping("/projects/{projectId}")
-	public Project editProject(@PathVariable Long projectId, @RequestBody String name, @RequestBody String description, @RequestBody Status status, @RequestBody LocalDate estimatedFinishDate)
+	public Project editProject(@PathVariable Long projectId, @RequestBody String name, @RequestBody String description, @RequestBody Status status, @RequestBody LocalDate estimatedFinishDate, @RequestBody Long leaderId)
 	{
-		return projectService.editProject(projectId,name,description,status,estimatedFinishDate);
+		return projectService.editProject(projectId, name, description, status, estimatedFinishDate, leaderId);
 	}
 
 
