@@ -47,7 +47,7 @@ public class Memo1TPG {
 	}
 
 	@PostMapping("/projects")
-	public Project createProject(@RequestParam String name, @RequestParam String description, @RequestParam String startDate, @RequestParam String estimatedFinishDate, @RequestParam String leaderId)
+	public Project createProject(@RequestBody String name, @RequestBody String description,@RequestBody String startDate, @RequestBody String estimatedFinishDate, @RequestBody String leaderId)
 	{
 		return projectService.createProject(name, description,LocalDate.parse(
 				startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse(
@@ -55,7 +55,7 @@ public class Memo1TPG {
 	}
 
 	@PostMapping("/projects/{projectId}/tasks")
-	public Task createTask(@PathVariable Long projectId, @RequestParam String name, @RequestParam String description, @RequestParam Priority priority, @RequestParam Long estimatedDuration, @RequestParam LocalDate startDate, @RequestParam LocalDate estimatedFinishDate)
+	public Task createTask(@PathVariable Long projectId, @RequestBody String name, @RequestBody String description, @RequestBody Priority priority, @RequestBody Long estimatedDuration,@RequestBody LocalDate startDate, @RequestBody LocalDate estimatedFinishDate)
 	{
 		return taskService.createTask(projectId, name, description, priority, estimatedDuration, startDate, estimatedFinishDate);
 	}
@@ -71,7 +71,7 @@ public class Memo1TPG {
 	}
 
 	@PutMapping("/projects/{projectId}")
-	public Project editProject(@PathVariable Long projectId, @RequestParam String name, @RequestParam String description, @RequestParam Status status, @RequestParam LocalDate estimatedFinishDate)
+	public Project editProject(@PathVariable Long projectId, @RequestBody String name, @RequestBody String description, @RequestBody Status status, @RequestBody LocalDate estimatedFinishDate)
 	{
 		return projectService.editProject(projectId,name,description,status,estimatedFinishDate);
 	}
@@ -94,7 +94,7 @@ public class Memo1TPG {
 	}
 
 	@PutMapping("/projects/{projectId}/tasks/{taskId}")
-	public Task editTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestParam String name, @RequestParam String description, @RequestParam Priority priority, @RequestParam Status status, @RequestParam Long estimatedDuration, @RequestParam LocalDate finishDate) {
+	public Task editTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody String name, @RequestBody String description, @RequestBody Priority priority, @RequestBody Status status, @RequestBody Long estimatedDuration, @RequestBody LocalDate finishDate) {
 		return taskService.editTask(projectId,taskId, name, description, priority, status, estimatedDuration, finishDate);
 	}
 
