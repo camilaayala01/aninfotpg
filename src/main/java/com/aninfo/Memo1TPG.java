@@ -47,11 +47,13 @@ public class Memo1TPG {
 	}
 
 	@PostMapping("/projects")
-	public Project createProject(@RequestBody String name, @RequestBody String description,@RequestBody String startDate, @RequestBody String estimatedFinishDate, @RequestBody String leaderId)
+	public Project createProject(@RequestBody ProjectCreationRequest project)
 	{
-		return projectService.createProject(name, description,LocalDate.parse(
-				startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse(
-				estimatedFinishDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")),Long.parseLong(leaderId));
+		return projectService.createProject(project.getName(),
+				project.getDescription(),
+				LocalDate.parse(project.getStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+				LocalDate.parse(project.getEstimatedFinishDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+				Long.parseLong(project.getLeaderId()));
 	}
 
 	@PostMapping("/projects/{projectId}/tasks")
