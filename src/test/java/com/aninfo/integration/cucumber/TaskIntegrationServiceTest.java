@@ -21,17 +21,17 @@ public class TaskIntegrationServiceTest {
     TaskService taskService;
 
     public Task createTask(String name) {
-        return taskService.createTask(1L,name,"", Priority.HIGH, 200L, LocalDate.now(),LocalDate.now());
+        return taskService.createTask(1L,name,"", Priority.HIGH, 200L, LocalDate.now(),LocalDate.now(),1L);
     }
     public Task createTask(String name, LocalDate estimatedfinishedDate){
-        return taskService.createTask(1L,name,"", Priority.HIGH, 200L, LocalDate.now(),estimatedfinishedDate);
+        return taskService.createTask(1L,name,"", Priority.HIGH, 200L, LocalDate.now(),estimatedfinishedDate,1L);
     }
 
     public Task createTask(String name, String descripcion) {
-        return taskService.createTask(1L,name,descripcion, Priority.HIGH, 200L, LocalDate.now(),LocalDate.now());
+        return taskService.createTask(1L,name,descripcion, Priority.HIGH, 200L, LocalDate.now(),LocalDate.now(),1L);
     }
     Task createTask() {
-        return taskService.createTask(1L,"","", Priority.HIGH, 200L, LocalDate.now(),LocalDate.now());
+        return taskService.createTask(1L,"","", Priority.HIGH, 200L, LocalDate.now(),LocalDate.now(),1L);
     }
     public Collection<Task> findAllTaskInProject(Long id){return taskService.getTasksByProject(id);}
     public Optional<Task> findById(Long taskId) {

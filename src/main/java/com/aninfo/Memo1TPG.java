@@ -66,7 +66,8 @@ public class Memo1TPG {
 				Priority.valueOf(task.getPriority()),
 				Long.parseLong(task.getEstimatedDuration()),
 				LocalDate.parse(task.getStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-				LocalDate.parse(task.getEstimatedFinishDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+				LocalDate.parse(task.getEstimatedFinishDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+				Long.parseLong(task.getLeaderId()));
 	}
 
 	@GetMapping("/projects")
