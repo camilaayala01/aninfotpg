@@ -49,18 +49,18 @@ public class TaskIntegrationServiceTest {
     public void deleteAll(){ taskService.deleteAll();}
 
     Task editTask(Long id, String name) {
-        return taskService.editTask(1L,id,name, "ejemplo descripcion", Priority.HIGH, Status.IN_PROGRESS, 200L, LocalDate.now());
+        return taskService.editTask(1L,id,name, "ejemplo descripcion", Priority.HIGH, Status.IN_PROGRESS, 200L, LocalDate.now(), 1L);
 
     }
     Task editTask(Long id, String description, String name) {
-        return taskService.editTask(1L,id,name, description, Priority.HIGH, Status.IN_PROGRESS, 200L, LocalDate.now());
+        return taskService.editTask(1L,id,name, description, Priority.HIGH, Status.IN_PROGRESS, 200L, LocalDate.now(), 1L);
     }
     Task editTask(Long id, Status status, String name)
     {
-        return taskService.editTask(1L,id,name, "ejemplo descripcion", Priority.HIGH, status, 200L, LocalDate.now());
+        return taskService.editTask(1L,id,name, "ejemplo descripcion", Priority.HIGH, status, 200L, LocalDate.now(), 1L);
     }
     Task editTask(Long id, LocalDate estimatedFinishDate, String name) {
-        return taskService.editTask(1L,id,name, "ejemplo descripcion", Priority.HIGH, Status.IN_PROGRESS, 200L, estimatedFinishDate);
+        return taskService.editTask(1L,id,name, "ejemplo descripcion", Priority.HIGH, Status.IN_PROGRESS, 200L, estimatedFinishDate, 1L);
     }
     public void deleteById(Long id)
     {

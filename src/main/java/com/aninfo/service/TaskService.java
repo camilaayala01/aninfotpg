@@ -62,12 +62,12 @@ public class TaskService {
         return taskRepository.findTaskByName(name).orElseThrow(() -> new InvalidTaskException("No task found with that name"));
     }
 
-    public Task editTask(Long projectId, Long taskId, String name, String description, Priority priority, Status status, Long estimatedDuration, LocalDate finishDate) {
+    public Task editTask(Long projectId, Long taskId, String name, String description, Priority priority, Status status, Long estimatedDuration, LocalDate finishDate, Long leaderId) {
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new InvalidTaskException("Task not found"));
         if (nameTakenByOtherTask(name, projectId, taskId)){
             throw new TaskNameAlreadyTaken("Task name already exists in this project");
         }
-        task.editTask(name,description,priority,status,estimatedDuration,finishDate);
+        task.editTask(name, description, priority, status, estimatedDuration, finishDate, leaderId);
         return taskRepository.save(task);
     }
 

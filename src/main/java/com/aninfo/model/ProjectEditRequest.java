@@ -26,4 +26,7 @@ public class ProjectEditRequest {
     public String getStatus(){return status;}
 
     public String getLeaderId() {return leaderId;}
+
+    public ProjectEditRequest() {
+    }
 }

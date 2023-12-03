@@ -1,7 +1,6 @@
 package com.aninfo.model;
 
 public class TaskEditRequest {
-
     String name;
     String description;
     String priority;
@@ -33,4 +32,8 @@ public class TaskEditRequest {
     public String getStatus(){return status;}
 
     public String getLeaderId() {return leaderId;}
+
+    public TaskEditRequest() {
+
+    }
 }

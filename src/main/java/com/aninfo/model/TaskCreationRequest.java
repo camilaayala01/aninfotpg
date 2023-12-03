@@ -37,5 +37,7 @@ public class TaskCreationRequest {
     }
 
     //public String getresponsableId() {return responsableId;}
+    public TaskCreationRequest() {
 
+    }
 }

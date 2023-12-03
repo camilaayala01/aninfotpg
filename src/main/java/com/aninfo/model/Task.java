@@ -22,7 +22,7 @@ public class Task {
     private LocalDate creationDate;
     private LocalDate startDate;
     private LocalDate finishDate;
-    //  comentarios(comments) y responsable (employee-in-charge)
+    private Long projectLeaderId;
 
     public Long getId(){ return id; }
     public String getName(){ return name; }
@@ -34,6 +34,9 @@ public class Task {
     public LocalDate getCreationDate(){ return creationDate; }
     public LocalDate getStartDate(){ return startDate; }
     public LocalDate getFinishDate(){ return finishDate; }
+    public Long getProjectLeaderId(){
+        return projectLeaderId;
+    }
 
     public void setName(String name){ this.name = name; }
     public void setDescription(String description){ this.description = description; }
@@ -42,6 +45,8 @@ public class Task {
     public void setEstimatedDuration(Long estimatedDuration){ this.estimatedDuration = estimatedDuration; }
     public void setFinishDate(LocalDate finishDate){ this.finishDate = finishDate; }
 
+
+    public void setProjectLeaderId(Long projectLeaderId){ this.projectLeaderId = projectLeaderId; }
     public Task() {
 
     }
@@ -58,14 +63,15 @@ public class Task {
         this.finishDate = finishDate;
     }
 
-    public void editTask(String name, String description, Priority priority, Status status, Long estimatedDuration, LocalDate finishDate)
-    {  //and employee?
+    public void editTask(String name, String description, Priority priority, Status status, Long estimatedDuration, LocalDate finishDate, Long leaderId)
+    {
         setName(name);
         setDescription(description);
         setPriority(priority);
         setStatus(status);
         setEstimatedDuration(estimatedDuration);
         setFinishDate(finishDate);
+        setProjectLeaderId(leaderId);
     }
 
 }

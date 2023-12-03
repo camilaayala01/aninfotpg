@@ -98,7 +98,15 @@ public class Memo1TPG {
 
 	@PutMapping("/projects/{projectId}/tasks/{taskId}")
 	public Task editTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody TaskEditRequest task) {
-		return taskService.editTask(projectId,taskId,task.getName(),task.getDescription(),Priority.valueOf(task.getPriority()),Status.valueOf(task.getStatus()),Long.parseLong(task.getEstimatedDuration()),LocalDate.parse(task.getEstimatedFinishDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		return taskService.editTask(projectId,
+				taskId,
+				task.getName(),
+				task.getDescription(),
+				Priority.valueOf(task.getPriority()),
+				Status.valueOf(task.getStatus()),
+				Long.parseLong(task.getEstimatedDuration()),
+				LocalDate.parse(task.getEstimatedFinishDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+				Long.parseLong(task.getLeaderId()));
 	}
 
 	@DeleteMapping("/projects/{projectId}/tasks/{taskId}")

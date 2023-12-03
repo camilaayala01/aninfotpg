@@ -36,6 +36,7 @@ public class Project {
     public void setStatus(Status status){ this.status = status; }
     public void setFinishDate(LocalDate finishDate){ this.finishDate = finishDate; }
 
+
     public Project(String name, String description, LocalDate startDate, LocalDate finishDate, Long projectLeaderId){
         this.name = name;
         this.status = Status.NOT_STARTED;
