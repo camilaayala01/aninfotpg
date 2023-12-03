@@ -60,7 +60,13 @@ public class Memo1TPG {
 	@PostMapping("/projects/{projectId}/tasks")
 	public Task createTask(@PathVariable Long projectId, @RequestBody TaskCreationRequest task)
 	{
-		return taskService.createTask(projectId,task.getName(), task.getDescription(), Priority.valueOf(task.getPriority()),Long.parseLong(task.getEstimatedDuration()),LocalDate.parse(task.getStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.parse(task.getEstimatedDuration(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		return taskService.createTask(projectId,
+				task.getName(),
+				task.getDescription(),
+				Priority.valueOf(task.getPriority()),
+				Long.parseLong(task.getEstimatedDuration()),
+				LocalDate.parse(task.getStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+				LocalDate.parse(task.getEstimatedDuration(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 	}
 
 	@GetMapping("/projects")

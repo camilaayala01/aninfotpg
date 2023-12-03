@@ -12,7 +12,7 @@ public class TaskCreationRequest {
 
     private String startDate;
     private String estimatedFinishDate;
-   // private String responsibleId;
+    private String leaderId;
 
     public String getName() {
         return name;
@@ -36,7 +36,7 @@ public class TaskCreationRequest {
         return estimatedFinishDate;
     }
 
-    //public String getresponsableId() {return responsableId;}
+    public String getLeaderId() {return leaderId;}
     public TaskCreationRequest() {
 
     }
