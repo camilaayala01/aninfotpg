@@ -11,12 +11,10 @@ public class Ticket {
     public Ticket(
             Long code,
             String title,
-            Status status,
             Severity severity
     ) {
         this.code = code;
         this.title = title;
-        this.status = status;
         this.severity = severity;
     }
 
@@ -24,7 +22,6 @@ public class Ticket {
 
     public Long getCode() {return code;}
     public Severity getSeverity() {return severity;}
-    public Status getStatus(){ return status;}
 
 
 }

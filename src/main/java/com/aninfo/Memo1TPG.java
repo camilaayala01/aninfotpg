@@ -131,7 +131,7 @@ public class Memo1TPG {
 			TicketRequest ticket = responseEntity.getBody();
 
 			if (ticket != null) {
-				return new Ticket(ticket.getCode(), ticket.getTitle(), ticket.getStatus(),ticket.getSeverity());
+				return new Ticket(ticket.getCode(), ticket.getTitle(),ticket.getSeverity());
 			}
 		}
 		return null;
