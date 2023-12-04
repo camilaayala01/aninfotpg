@@ -1,54 +1,42 @@
 package com.aninfo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TicketRequest {
+    @JsonProperty("code")
 
     private Long code;
 
-    private final String title;
-    private final String description;
-    private final Status status;
-    private final Severity severity;
-    private final Priority priority;
-    private final String product;
-    private final String version;
-    private final Long employeeId;
-    private final Long clientId;
+    @JsonProperty("title")
+    private  String title;
+    @JsonProperty("description")
+    private String description;
+    @JsonProperty("status")
+    private  Status status;
+    @JsonProperty("severity")
+    private  Severity severity;
+    @JsonProperty(" priority")
+    private  Priority priority;
+    @JsonProperty("product")
+    private String product;
+    @JsonProperty("version")
+    private String version;
+    @JsonProperty("employeeId")
+    private  Long employeeId;
+    @JsonProperty("clientId")
+    private  Long clientId;
+    @JsonProperty("associatedTasks")
+    private  List<Long> associatedTasks;
+    @JsonProperty("startDate")
+    private LocalDate startDate;
+    @JsonProperty("closingDate")
+    private  LocalDate closingDate;
 
-    private final List<Long> associatedTasks;
-    private final LocalDate startDate;
-    private final LocalDate closingDate;
 
-
-
-    public TicketRequest(
-            String title,
-            String description,
-            Status status,
-            Severity severity,
-            Priority priority,
-            String product,
-            String version,
-            Long clientId,
-            Long employeeId,
-            LocalDate closingDate
-    ) {
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.severity = severity;
-        this.priority = priority;
-        this.product = product;
-        this.version = version;
-        this.clientId = clientId;
-        this.employeeId = employeeId;
-        this.associatedTasks = new ArrayList<>();
-        this.startDate = LocalDate.now();
-        this.closingDate = closingDate;
-    }
 
     public Long getCode(){ return code;}
     public String getTitle(){ return title;}

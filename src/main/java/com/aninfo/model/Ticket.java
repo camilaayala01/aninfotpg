@@ -22,6 +22,8 @@ public class Ticket {
     }
 
     public String getTitle(){ return title;}
+
+    public Long getCode() {return code;}
     public String getDescription(){ return description;}
     public Status getStatus(){ return status;}
 

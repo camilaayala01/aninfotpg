@@ -119,7 +119,7 @@ public class Memo1TPG {
 		taskService.deleteById(taskId);
 	}
 
-	public Ticket getTicket(Long ticketId)
+	private Ticket getTicket(Long ticketId)
 	{
 		RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
 		String url = "https://psa-soporte-1yfx.onrender.com/tickets/" + ticketId;
@@ -137,7 +137,7 @@ public class Memo1TPG {
 		return null;
 	}
 	@GetMapping("/projects/{projectId}/tasks/{taskId}/tickets")
-	public Collection<Ticket> getTicketsForTask( @PathVariable Long taskId) {
+	public Collection<Ticket> getTicketsForTask(@PathVariable Long taskId) {
 		RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
 		String url = "https://psa-soporte-1yfx.onrender.com/tickets/associatedTask?taskId=" + taskId;
 		ResponseEntity<Long[]> responseEntity = restTemplate.getForEntity(
