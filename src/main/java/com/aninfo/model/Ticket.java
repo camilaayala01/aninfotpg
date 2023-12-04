@@ -3,7 +3,6 @@ public class Ticket {
 
     private Long code;
     private String title;
-    private String description;
     private Status status;
     private Severity severity;
     public Ticket() {
@@ -24,7 +23,7 @@ public class Ticket {
     public String getTitle(){ return title;}
 
     public Long getCode() {return code;}
-    public String getDescription(){ return description;}
+    public Severity getSeverity() {return severity;}
     public Status getStatus(){ return status;}
 
 
