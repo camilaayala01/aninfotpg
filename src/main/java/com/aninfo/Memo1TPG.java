@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.builders.PathSelectors;
@@ -75,6 +72,7 @@ public class Memo1TPG {
 		return projectService.findAll();
 	}
 
+
 	@GetMapping("/projects/{projectId}")
 	public Project getProject(@PathVariable Long projectId) {
 		return projectService.findById(projectId);
@@ -121,6 +119,50 @@ public class Memo1TPG {
 		taskService.deleteById(taskId);
 	}
 
+	public Ticket getTicket(Long ticketId)
+	{
+		RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
+		String url = "https://psa-soporte-1yfx.onrender.com/tickets/" + ticketId;
+		ResponseEntity<TicketRequest> responseEntity = restTemplate.getForEntity(
+				url,
+				TicketRequest.class);
+
+		if (responseEntity.getStatusCode() == HttpStatus.OK) {
+			TicketRequest ticket = responseEntity.getBody();
+
+			if (ticket != null) {
+				return new Ticket(ticket.getCode(), ticket.getTitle(), ticket.getStatus(),ticket.getSeverity());
+			}
+		}
+		return null;
+	}
+	@GetMapping("/projects/{projectId}/tasks/{taskId}/tickets")
+	public Collection<Ticket> getTicketsForTask( @PathVariable Long taskId) {
+		RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
+		String url = "https://psa-soporte-1yfx.onrender.com/tickets/associatedTask?taskId=" + taskId;
+		ResponseEntity<Long[]> responseEntity = restTemplate.getForEntity(
+				url,
+				Long[].class);
+
+		if (responseEntity.getStatusCode() == HttpStatus.OK) {
+			Long[] ticketIds = responseEntity.getBody();
+
+			if (ticketIds != null) {
+				List<Ticket> tickets  = new ArrayList<Ticket>();
+				for (Long ticketId:ticketIds)
+				{
+					Ticket ticket = getTicket(ticketId);
+					if (ticket != null)
+					{
+						tickets.add(ticket);
+					}
+				}
+				return tickets;
+			}
+		}
+
+		return Collections.emptyList();
+	}
 	@GetMapping("/employees")
 	public Collection<Employee> getEmployees() {
 		RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
