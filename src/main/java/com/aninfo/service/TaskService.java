@@ -19,10 +19,10 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public Task createTask(Long projectId, String name, String description, Priority priority, Long estimatedDuration, LocalDate startDate, LocalDate finishDate)
+    public Task createTask(Long projectId, String name, String description, Priority priority, Long estimatedDuration, LocalDate startDate, LocalDate finishDate, Long responsableId)
     {
         taskRepository.findTaskByName(name).ifPresent(x -> { if (x.getProjectId().equals(projectId)) {throw new TaskNameAlreadyTaken("Task name already exists in project");}});
-        Task task = new Task(projectId, name, description, priority, estimatedDuration, startDate, finishDate);
+        Task task = new Task(projectId, name, description, priority, estimatedDuration, startDate, finishDate,responsableId);
         return taskRepository.save(task);
     }
 

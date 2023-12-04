@@ -22,7 +22,7 @@ public class Task {
     private LocalDate creationDate;
     private LocalDate startDate;
     private LocalDate finishDate;
-    private Long projectLeaderId;
+    private Long asignedId;
 
     public Long getId(){ return id; }
     public String getName(){ return name; }
@@ -34,8 +34,8 @@ public class Task {
     public LocalDate getCreationDate(){ return creationDate; }
     public LocalDate getStartDate(){ return startDate; }
     public LocalDate getFinishDate(){ return finishDate; }
-    public Long getProjectLeaderId(){
-        return projectLeaderId;
+    public Long getAsignedId(){
+        return asignedId;
     }
 
     public void setName(String name){ this.name = name; }
@@ -46,12 +46,12 @@ public class Task {
     public void setFinishDate(LocalDate finishDate){ this.finishDate = finishDate; }
 
 
-    public void setProjectLeaderId(Long projectLeaderId){ this.projectLeaderId = projectLeaderId; }
+    public void setAsignedId(Long asignedId){ this.asignedId = asignedId; }
     public Task() {
 
     }
 
-    public Task(Long projectId, String name, String description, Priority priority, Long estimatedDuration, LocalDate startDate, LocalDate finishDate) {
+    public Task(Long projectId, String name, String description, Priority priority, Long estimatedDuration, LocalDate startDate, LocalDate finishDate, Long asignedId) {
         this.projectId = projectId;
         this.name = name;
         this.description = description;
@@ -61,9 +61,10 @@ public class Task {
         this.creationDate = LocalDate.now();
         this.startDate = startDate;
         this.finishDate = finishDate;
+        this.asignedId = asignedId;
     }
 
-    public void editTask(String name, String description, Priority priority, Status status, Long estimatedDuration, LocalDate finishDate, Long leaderId)
+    public void editTask(String name, String description, Priority priority, Status status, Long estimatedDuration, LocalDate finishDate, Long asignedId)
     {
         setName(name);
         setDescription(description);
@@ -71,7 +72,7 @@ public class Task {
         setStatus(status);
         setEstimatedDuration(estimatedDuration);
         setFinishDate(finishDate);
-        setProjectLeaderId(leaderId);
+        setAsignedId(asignedId);
     }
 
 }
