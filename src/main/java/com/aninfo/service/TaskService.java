@@ -57,7 +57,6 @@ public class TaskService {
 
         return false;
     }
-
     public Task findByName(String name) {
         return taskRepository.findTaskByName(name).orElseThrow(() -> new InvalidTaskException("No task found with that name"));
     }

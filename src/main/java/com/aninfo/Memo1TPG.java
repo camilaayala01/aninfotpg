@@ -102,6 +102,16 @@ public class Memo1TPG {
 		return taskService.getTask(taskId);
 	}
 
+	@GetMapping("/tasks/{taskId}")
+	public Optional<Task> getIndependentTask( @PathVariable Long taskId ) {
+		return taskService.getTask(taskId);
+	}
+
+	@GetMapping("/tasks")
+	public Collection<Task> getAllTasks() {
+		return taskService.getTasks();
+	}
+
 	@PutMapping("/projects/{projectId}/tasks/{taskId}")
 	public Task editTask(@PathVariable Long projectId, @PathVariable Long taskId, @RequestBody TaskEditRequest task) {
 		return taskService.editTask(projectId,
